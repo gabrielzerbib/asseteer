@@ -122,7 +122,7 @@ class AssetInstaller
 
   private static function copy($filename, $targetPath, IOInterface $io)
   {
-    $relativeFilename = preg_replace('#^'.self::$vendorOfAssetsToCopy.'/#', '', $filename);
+    $relativeFilename = preg_replace('#^'.preg_quote(self::$vendorOfAssetsToCopy, '#').'[/\\\\]#', '', $filename);
 
     $directory = $targetPath . '/' . dirname($relativeFilename);
     if (! is_dir($directory)) {
